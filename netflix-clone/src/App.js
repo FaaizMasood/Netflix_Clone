@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Row from "./Row";
-import requests from "./request";
+import requests from "./Requests";
 function App() {
   return (
     <div className="App">
@@ -10,6 +10,7 @@ function App() {
         title="Netflix Originals"
         fetchUrl={requests.fetchNetflixOriginals}
       />
+      <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
     </div>
   );
 }

@@ -12,18 +12,24 @@ function Row({ title, fetchUrl }) {
     // run an async function
     async function fetchData() {
       // "https//api.themoviedb.org/3", and the `/discover/tv?api_key=${API_KEY}&with_networks=213`,
+      //console.log(axios.get(fetchUrl));
       const request = await axios.get(fetchUrl);
-      console.log(request);
+      //console.log(request.data.results);
+      setMovies(request.data.results);
       return request;
     }
     fetchData();
-  }, []);
-  return (
-    <div>
-      {/* Title */}
-      <h2>{title}</h2>
+  }, [fetchUrl]);
 
-      {/* Container - posters */}
+  console.log(movies);
+  return (
+    <div className="row">
+      <h2>{title}</h2>
+      <div className="row__posters">
+        {movies.map((movie) => (
+          <img src={movie.poster_path} alt={movie.name} />
+        ))}
+      </div>
     </div>
   );
 }
